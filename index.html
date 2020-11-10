@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Распознавание Ворониных</title>
+</head>
+<body>
+
+<input type="file" id="input" multiple>
+<button>Отправить</button>
+
+
+<script type="text/javascript">
+	async function handleUpload() {
+		const selectedFile = document.getElementById('input').files[0];	
+		let formData = new FormData();
+
+		formData.append("file", selectedFile);
+		let result = await fetch('http://127.0.0.1:8000/recognize/', {method: "POST", body: formData});
+		result = await result.json();
+		alert(result.result);	
+	}
+
+	document.querySelector('button').addEventListener("click", handleUpload);
+</script>
+</body>
+</html>

@@ -45,10 +45,10 @@ def compare_vera(encoding):
 		return "Вера"
 
 	else:
-		return compare_ded(encoding)
+		return compare_nikolay(encoding)
 
 
-def compare_ded(encoding):
+def compare_nikolay(encoding):
 	compare_result = face_recognition.compare_faces([ded_encoding], encoding)
 	if compare_result[0]:
 		return "Николай Петрович"
@@ -128,8 +128,7 @@ def create_file(file: UploadFile = File(...)):
 	    shutil.copyfileobj(file.file, buffer)
 
 	unknown_image = face_recognition.load_image_file("samples/test.jpeg")
-	# unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
-	# result = start_comparing(unknown_encoding)	
+	
 	try:
 		unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
 		result = start_comparing(unknown_encoding)	
